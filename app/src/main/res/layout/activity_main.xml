@@ -25,7 +25,7 @@
         app:layout_constraintStart_toStartOf="parent"
 
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.116" />
+        app:layout_constraintVertical_bias="0.158" />
 
     <EditText
         android:id="@+id/editNome"
@@ -40,21 +40,22 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titulo"
-        app:layout_constraintVertical_bias="0.254" />
+        app:layout_constraintVertical_bias="0.357" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/entrarButton"
+        style="@style/Widget.Material3.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="goNextActivity"
         android:text="Começar"
         android:textSize="20sp"
+        app:backgroundTint="#009688"
         app:iconTint="#009688"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editNome"
-        app:layout_constraintVertical_bias="0.256" />
+        app:layout_constraintVertical_bias="0.378" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
