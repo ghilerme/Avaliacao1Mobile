@@ -2,6 +2,7 @@ package com.example.av1
 
 import android.os.Build
 import android.os.Bundle
+import android.content.Intent
 import android.widget.Button
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
@@ -19,16 +20,20 @@ class Results : AppCompatActivity() {
 
         // Manage user name
         val bundle = intent.extras
-        if ( bundle != null ) {
-            val user = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+        val user: User? = if (bundle != null) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 bundle.getParcelable("user", User::class.java)
             } else {
                 bundle.getParcelable("user")
             }
+        } else {
+            null
         }
 
+        val userName = user?.userName ?: "Usuário"
+
         val userNameTextView: TextView = findViewById(R.id.resultsHeader)
-        userNameTextView.text = userName ? : "Usuário"
+        userNameTextView.text = userName
 
         // Go to main menu
         val mainMenuButton: Button = findViewById(R.id.mainMenuButton)
