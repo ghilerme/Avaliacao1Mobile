@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AV1">
         <activity
+            android:name=".Results"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
