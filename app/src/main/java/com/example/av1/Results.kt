@@ -4,6 +4,7 @@ import android.os.Build
 import android.os.Bundle
 import android.content.Intent
 import android.widget.Button
+import android.widget.ListView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.annotation.RequiresApi
@@ -31,9 +32,16 @@ class Results : AppCompatActivity() {
         }
 
         val userName = user?.userName ?: "Usuário"
-
         val userNameTextView: TextView = findViewById(R.id.resultsHeader)
-        userNameTextView.text = userName
+        userNameTextView.text = "Parabéns, ".plus(userName).plus("!")
+
+        val score = intent.getIntExtra("score", 0)
+        val scoreTextView: TextView = findViewById(R.id.resultsSubtitle)
+        scoreTextView.text = "Sua pontuação foi de ".plus(score.toString()).plus(" pontos.")
+
+        val answers = intent.getParcelableArrayListExtra<Answer>("answers") ?: arrayListOf()
+        val listView: ListView = findViewById(R.id.answersList)
+        listView.adapter = AnswerListAdapter(this, answers)
 
         // Go to main menu
         val mainMenuButton: Button = findViewById(R.id.mainMenuButton)

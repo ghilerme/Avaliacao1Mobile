@@ -1,5 +1,7 @@
 package com.example.av1
 
+import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -36,7 +38,6 @@ class Activity2 : AppCompatActivity() {
         Flag(R.drawable.flag_mexico, "México"),
         Flag(R.drawable.flag_paraguay, "Paraguai"),
         Flag(R.drawable.flag_puerto_rico, "Porto Rico"),
-        //Flag(R.drawable.flag_saint_barthelemy, "São Bartolomeu"),
         Flag(R.drawable.flag_south_africa, "África do Sul"),
         Flag(R.drawable.flag_south_korea, "Coréia do Sul"),
         Flag(R.drawable.flag_united_states, "Estados Unidos da América")
@@ -50,6 +51,8 @@ class Activity2 : AppCompatActivity() {
     private lateinit var buttonSubmit: Button
 
     private lateinit var textViewFeedback: TextView
+
+    private val answers = mutableListOf<Answer>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -72,6 +75,8 @@ class Activity2 : AppCompatActivity() {
         buttonSubmit.setOnClickListener {
             checkAnswer()
         }
+
+        val bundle = intent.extras
     }
 
     //adicionar uma lista das respostas certas e erradas checkAnswer()
@@ -79,7 +84,9 @@ class Activity2 : AppCompatActivity() {
         val userAnswer = editTextAnswer.text.toString()
         val correctAnswer = quizFlags[currentQuestionIndex].countryName
 
-        if (userAnswer.equals(correctAnswer, ignoreCase = true)) {
+        val isCorrect = userAnswer.equals(correctAnswer, ignoreCase = true)
+
+        if (isCorrect) {
             score += 20
             textViewFeedback.text = "Correto!"
             textViewFeedback.setTextColor(getColor(R.color.green))
@@ -88,6 +95,14 @@ class Activity2 : AppCompatActivity() {
             textViewFeedback.setTextColor(getColor(R.color.red))
         }
 
+        val answer = Answer(
+            question = quizFlags[currentQuestionIndex],
+            userAnswer = userAnswer,
+            correctAnswer = correctAnswer,
+            isCorrect = isCorrect
+        )
+        answers.add(answer)
+
         textViewFeedback.visibility = View.VISIBLE
 
         currentQuestionIndex++
@@ -95,7 +110,23 @@ class Activity2 : AppCompatActivity() {
         if (currentQuestionIndex < quizFlags.size) {
             showNextQuestion()
         } else {
-            Toast.makeText(this, "Fim de jogo! Pontuação final: $score", Toast.LENGTH_LONG).show()
+            // ir para a tela de resultados
+            val bundle = intent.extras
+            val user: User? = if (bundle != null) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                    bundle.getParcelable("user", User::class.java)
+                } else {
+                    bundle.getParcelable("user")
+                }
+            } else {
+                null
+            }
+            val intent = Intent(this, Results::class.java)
+            intent.putExtra("score", score)
+            intent.putExtra("user", user)
+            intent.putParcelableArrayListExtra("answers", ArrayList(answers))
+            startActivity(intent)
+            finish()
         }
     }
 
