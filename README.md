@@ -62,5 +62,3 @@ The project will be evaluated based on the following criteria:
     A detailed results screen with a question breakdown.
     The ability to restart the game from the results screen.
     Overall polish and attention to detail.
-
-**Note:** This project is worth 10 points towards the final grade.
