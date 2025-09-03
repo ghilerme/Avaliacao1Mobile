@@ -13,8 +13,11 @@
         android:layout_height="wrap_content"
         android:text="Resultados"
         android:textSize="32sp"
-        tools:layout_editor_absoluteX="126dp"
-        tools:layout_editor_absoluteY="58dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.085" />
 
     <TextView
         android:id="@+id/resultsHeader"
@@ -22,8 +25,11 @@
         android:layout_height="wrap_content"
         android:text="Parabéns, usuário!"
         android:textSize="16sp"
-        tools:layout_editor_absoluteX="140dp"
-        tools:layout_editor_absoluteY="136dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.191" />
 
     <TextView
         android:id="@+id/resultsSubtitle"
@@ -31,20 +37,29 @@
         android:layout_height="wrap_content"
         android:text="Você acertou x perguntas!"
         android:textSize="16sp"
-        tools:layout_editor_absoluteX="112dp"
-        tools:layout_editor_absoluteY="158dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.222" />
 
     <ListView
+        android:id="@+id/listView"
         android:layout_width="412dp"
         android:layout_height="325dp"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="209dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/mainMenuButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Voltar ao menu"
-        tools:layout_editor_absoluteX="133dp"
-        tools:layout_editor_absoluteY="577dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.819" />
 </androidx.constraintlayout.widget.ConstraintLayout>
