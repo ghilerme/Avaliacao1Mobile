@@ -35,7 +35,8 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
-        val intent = Intent(this, Activity2::class.javaClass)
+//        val intent = Intent(this, Activity2::class.javaClass)
+          val intent = Intent(this, Activity2::class.java)
 
         val user = User (
             userName = userInput,
